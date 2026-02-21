@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/plugins/SustainableZone" >
+      <file>icon.png</file>
+	<file>FSTT.png</file>
+	<file>UAE.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SustainableZoneDialogBase</class>
+ <widget class="QDialog" name="SustainableZoneDialogBase">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>620</width><height>480</height></rect>
+  </property>
+  <property name="windowTitle">
+   <string>ADMC Expert - Durabilité Touristique</string>
+  </property>
+  <property name="styleSheet">
+   <string>
+    QDialog { background-color: #F5F7FA; font-family: 'Segoe UI', Arial; }
+    QLabel { color: #2C3E50; font-size: 11px; }
+    QGroupBox { background-color: white; border: 1px solid #E1E8ED; border-radius: 6px; margin-top: 14px; font-weight: bold; }
+    QGroupBox::title { subcontrol-origin: margin; subcontrol-position: top left; left: 10px; padding: 0 5px; color: #27ae60; }
+    QTabWidget::pane { border: 1px solid #C4C4C4; background: white; border-radius: 5px; }
+    QTabBar::tab { background: #ECF0F1; color: #7F8C8D; padding: 5px 8px; margin-right: 2px; border-top-left-radius: 4px; border-top-right-radius: 4px; font-weight: bold; font-size: 10px; }
+    QTabBar::tab:selected { background: white; color: #27ae60; border-top: 3px solid #27ae60; }
+    QPushButton { background-color: #27ae60; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 11px; }
+    QPushButton:hover { background-color: #2ecc71; }
+    QPushButton#btn_export_pdf { background-color: #2980b9; }
+    QPushButton#btn_export_pdf:hover { background-color: #3498db; }
+    QPushButton#btn_compare { background-color: #8e44ad; }
+    QPushButton#btn_compare:hover { background-color: #9b59b6; }
+    QProgressBar { border: 1px solid #bdc3c7; border-radius: 4px; text-align: center; background-color: #ecf0f1; }
+    QProgressBar::chunk { background-color: #27ae60; }
+    QDoubleSpinBox { padding: 2px; border: 1px solid #bdc3c7; border-radius: 3px; }
+   </string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="spacing"><number>4</number></property>
+   <property name="leftMargin"><number>6</number></property>
+   <property name="topMargin"><number>6</number></property>
+   <property name="rightMargin"><number>6</number></property>
+   <property name="bottomMargin"><number>6</number></property>
+
+   <item>
+    <widget class="QLabel" name="label_header">
+     <property name="styleSheet"><string>font-size: 13px; font-weight: bold; color: white; background-color: #2c3e50; padding: 6px; border-radius: 5px;</string></property>
+     <property name="text"><string>🌍 Analyse ADMC - Durabilité Touristique</string></property>
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+    </widget>
+   </item>
+
+   <!-- Couche -->
+   <item>
+    <widget class="QGroupBox" name="groupBox_Input">
+     <property name="title"><string>Couche d'étude</string></property>
+     <layout class="QHBoxLayout">
+      <property name="topMargin"><number>4</number></property>
+      <property name="bottomMargin"><number>4</number></property>
+      <item><widget class="QLabel"><property name="text"><string>Couche :</string></property><property name="font"><font><bold>true</bold></font></property></widget></item>
+      <item><widget class="QgsMapLayerComboBox" name="mMapLayerComboBox"/></item>
+     </layout>
+    </widget>
+   </item>
+
+   <!-- Onglets principaux -->
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex"><number>0</number></property>
+
+     <!-- ÉCONOMIE -->
+     <widget class="QWidget" name="tab_eco">
+      <attribute name="title"><string>📊 Économie</string></attribute>
+      <layout class="QFormLayout" name="fl_eco">
+       <property name="verticalSpacing"><number>6</number></property>
+       <property name="leftMargin"><number>12</number></property>
+       <property name="topMargin"><number>8</number></property>
+       <item row="0" column="0"><widget class="QLabel"><property name="text"><string>PIB :</string></property></widget></item>
+       <item row="0" column="1"><widget class="QgsFieldComboBox" name="mField_PIB"/></item>
+       <item row="1" column="0"><widget class="QLabel"><property name="text"><string>Infrastructures hôtelières :</string></property></widget></item>
+       <item row="1" column="1"><widget class="QgsFieldComboBox" name="mField_Infra"/></item>
+       <item row="2" column="0"><widget class="QLabel"><property name="text"><string>Restaurants et Cafés :</string></property></widget></item>
+       <item row="2" column="1"><widget class="QgsFieldComboBox" name="mField_Resto"/></item>
+       <item row="3" column="0"><widget class="QLabel"><property name="text"><string>Nombre de touristes :</string></property></widget></item>
+       <item row="3" column="1"><widget class="QgsFieldComboBox" name="mField_Touristes"/></item>
+      </layout>
+     </widget>
+
+     <!-- ENVIRONNEMENT -->
+     <widget class="QWidget" name="tab_env">
+      <attribute name="title"><string>🌿 Environnement</string></attribute>
+      <layout class="QFormLayout" name="fl_env">
+       <property name="verticalSpacing"><number>6</number></property>
+       <property name="leftMargin"><number>12</number></property>
+       <property name="topMargin"><number>8</number></property>
+       <item row="0" column="0"><widget class="QLabel"><property name="text"><string>IQA (Qualité de l'Air) :</string></property></widget></item>
+       <item row="0" column="1"><widget class="QgsFieldComboBox" name="mField_IQA"/></item>
+       <item row="1" column="0"><widget class="QLabel"><property name="text"><string>Ressources naturelles :</string></property></widget></item>
+       <item row="1" column="1"><widget class="QgsFieldComboBox" name="mField_Ress"/></item>
+       <item row="2" column="0"><widget class="QLabel"><property name="text"><string>Biodiversité :</string></property></widget></item>
+       <item row="2" column="1"><widget class="QgsFieldComboBox" name="mField_Bio"/></item>
+      </layout>
+     </widget>
+
+     <!-- SOCIAL -->
+     <widget class="QWidget" name="tab_soc">
+      <attribute name="title"><string>🤝 Social</string></attribute>
+      <layout class="QFormLayout" name="fl_soc">
+       <property name="verticalSpacing"><number>6</number></property>
+       <property name="leftMargin"><number>12</number></property>
+       <property name="topMargin"><number>8</number></property>
+       <item row="0" column="0"><widget class="QLabel"><property name="text"><string>Sécurité :</string></property></widget></item>
+       <item row="0" column="1"><widget class="QgsFieldComboBox" name="mField_Secu"/></item>
+       <item row="1" column="0"><widget class="QLabel"><property name="text"><string>Santé sociale :</string></property></widget></item>
+       <item row="1" column="1"><widget class="QgsFieldComboBox" name="mField_Sante"/></item>
+       <item row="2" column="0"><widget class="QLabel"><property name="text"><string>Pauvreté :</string></property></widget></item>
+       <item row="2" column="1"><widget class="QgsFieldComboBox" name="mField_Pauvrete"/></item>
+       <item row="3" column="0"><widget class="QLabel"><property name="text"><string>Accueil PMR :</string></property></widget></item>
+       <item row="3" column="1"><widget class="QgsFieldComboBox" name="mField_PMR"/></item>
+      </layout>
+     </widget>
+
+     <!-- AHP -->
+     <widget class="QWidget" name="tab_ahp">
+      <attribute name="title"><string>⚖️ Pondérations AHP</string></attribute>
+      <layout class="QVBoxLayout" name="vl_ahp">
+       <property name="spacing"><number>4</number></property>
+       <property name="leftMargin"><number>10</number></property>
+       <property name="topMargin"><number>6</number></property>
+
+       <item><widget class="QLabel"><property name="text"><string>Matrice de comparaison par paires (dimensions)</string></property><property name="font"><font><bold>true</bold></font></property></widget></item>
+       <item><widget class="QLabel"><property name="text"><string>Échelle : 1=égal, 3=modéré, 5=fort, 7=très fort, 9=extrême</string></property><property name="styleSheet"><string>color:#7F8C8D; font-size:10px;</string></property></widget></item>
+
+       <item>
+        <layout class="QFormLayout">
+         <property name="verticalSpacing"><number>4</number></property>
+         <item row="0" column="0"><widget class="QLabel"><property name="text"><string>Économie / Environnement :</string></property></widget></item>
+         <item row="0" column="1"><widget class="QDoubleSpinBox" name="spin_eco_env"><property name="minimum"><double>0.11</double></property><property name="maximum"><double>9.00</double></property><property name="singleStep"><double>0.5</double></property><property name="value"><double>2.00</double></property><property name="decimals"><number>2</number></property></widget></item>
+         <item row="1" column="0"><widget class="QLabel"><property name="text"><string>Économie / Social :</string></property></widget></item>
+         <item row="1" column="1"><widget class="QDoubleSpinBox" name="spin_eco_soc"><property name="minimum"><double>0.11</double></property><property name="maximum"><double>9.00</double></property><property name="singleStep"><double>0.5</double></property><property name="value"><double>3.00</double></property><property name="decimals"><number>2</number></property></widget></item>
+         <item row="2" column="0"><widget class="QLabel"><property name="text"><string>Environnement / Social :</string></property></widget></item>
+         <item row="2" column="1"><widget class="QDoubleSpinBox" name="spin_env_soc"><property name="minimum"><double>0.11</double></property><property name="maximum"><double>9.00</double></property><property name="singleStep"><double>0.5</double></property><property name="value"><double>2.00</double></property><property name="decimals"><number>2</number></property></widget></item>
+        </layout>
+       </item>
+
+       <item><widget class="QLabel" name="lbl_weights_result">
+        <property name="text"><string>Économie: 0.540 | Environnement: 0.297 | Social: 0.163</string></property>
+        <property name="styleSheet"><string>color:#27ae60; font-size:11px; font-weight:bold; padding:5px; background:#f0f9f4; border:1px solid #27ae60; border-radius:4px;</string></property>
+        <property name="alignment"><set>Qt::AlignCenter</set></property>
+       </widget></item>
+       <item><widget class="QLabel" name="lbl_cr">
+        <property name="text"><string>CR : 0.000 ✔ Cohérent</string></property>
+        <property name="styleSheet"><string>color:#7F8C8D; font-size:10px;</string></property>
+        <property name="alignment"><set>Qt::AlignCenter</set></property>
+       </widget></item>
+
+       <item><widget class="QCheckBox" name="chk_sub_ahp"><property name="text"><string>Activer AHP détaillé sur les sous-critères</string></property></widget></item>
+
+       <!-- Conteneur dynamique pour les sous-critères AHP -->
+       <item>
+        <widget class="QScrollArea" name="scrollArea_sub_ahp">
+         <property name="widgetResizable"><bool>true</bool></property>
+         <property name="visible"><bool>false</bool></property>
+         <property name="styleSheet"><string>QScrollArea { border: none; }</string></property>
+         <widget class="QWidget" name="scrollAreaContent_sub_ahp">
+          <layout class="QVBoxLayout" name="vl_sub_ahp_content">
+           <property name="spacing"><number>4</number></property>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+
+     <!-- GRAPHIQUES -->
+     <widget class="QWidget" name="tab_graphs">
+      <attribute name="title"><string>📈 Graphiques</string></attribute>
+      <layout class="QVBoxLayout" name="vl_graphs">
+       <property name="spacing"><number>4</number></property>
+       <item><widget class="QLabel"><property name="text"><string>Les graphiques s'affichent ici après l'analyse.</string></property><property name="styleSheet"><string>color:#7F8C8D;</string></property><property name="alignment"><set>Qt::AlignCenter</set></property></widget></item>
+       <item><widget class="QLabel" name="lbl_graph_display">
+        <property name="minimumHeight"><number>180</number></property>
+        <property name="styleSheet"><string>background:white; border:1px solid #E1E8ED; border-radius:5px;</string></property>
+        <property name="alignment"><set>Qt::AlignCenter</set></property>
+        <property name="text"><string>📊 En attente de l'analyse...</string></property>
+       </widget></item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item><widget class="QPushButton" name="btn_graph_prev"><property name="text"><string>◀ Précédent</string></property></widget></item>
+         <item><widget class="QLabel" name="lbl_graph_title"><property name="text"><string>-</string></property><property name="alignment"><set>Qt::AlignCenter</set></property><property name="font"><font><bold>true</bold></font></property></widget></item>
+         <item><widget class="QPushButton" name="btn_graph_next"><property name="text"><string>Suivant ▶</string></property></widget></item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+
+     <!-- COMPARAISON -->
+     <widget class="QWidget" name="tab_compare">
+      <attribute name="title"><string>🔄 Comparer</string></attribute>
+      <layout class="QVBoxLayout" name="vl_compare">
+       <property name="spacing"><number>4</number></property>
+       <property name="leftMargin"><number>10</number></property>
+       <property name="topMargin"><number>6</number></property>
+       <item><widget class="QLabel"><property name="text"><string>Sélectionnez 2 zones à comparer :</string></property><property name="font"><font><bold>true</bold></font></property></widget></item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item><widget class="QComboBox" name="combo_zone1"/></item>
+         <item><widget class="QLabel"><property name="text"><string> VS </string></property><property name="font"><font><bold>true</bold></font></property><property name="styleSheet"><string>color:#e74c3c;</string></property></widget></item>
+         <item><widget class="QComboBox" name="combo_zone2"/></item>
+        </layout>
+       </item>
+       <item><widget class="QPushButton" name="btn_compare"><property name="text"><string>🔄 Comparer ces 2 zones</string></property></widget></item>
+       <item><widget class="QLabel" name="lbl_compare_result">
+        <property name="minimumHeight"><number>150</number></property>
+        <property name="styleSheet"><string>background:white; border:1px solid #E1E8ED; border-radius:5px;</string></property>
+        <property name="alignment"><set>Qt::AlignCenter</set></property>
+        <property name="text"><string>Lancez d'abord l'analyse, puis comparez.</string></property>
+       </widget></item>
+      </layout>
+     </widget>
+
+    </widget>
+   </item>
+
+   <!-- Progress + Console -->
+   <item>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value"><number>0</number></property>
+     <property name="format"><string>En attente...</string></property>
+     <property name="maximumHeight"><number>18</number></property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextBrowser" name="textBrowser_results">
+     <property name="maximumHeight"><number>50</number></property>
+     <property name="styleSheet"><string>background-color:#2c3e50; color:#ecf0f1; font-family:Consolas; font-size:10px; padding:3px; border-radius:4px;</string></property>
+    </widget>
+   </item>
+
+   <!-- Boutons -->
+   <item>
+    <layout class="QHBoxLayout">
+     <item><widget class="QPushButton" name="btn_export_pdf"><property name="text"><string>📄 Exporter PDF</string></property></widget></item>
+     <item><widget class="QDialogButtonBox" name="button_box">
+      <property name="standardButtons"><set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set></property>
+     </widget></item>
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget><class>QgsMapLayerComboBox</class><extends>QComboBox</extends><header>qgis.gui</header></customwidget>
+  <customwidget><class>QgsFieldComboBox</class><extends>QComboBox</extends><header>qgis.gui</header></customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection><sender>button_box</sender><signal>accepted()</signal><receiver>SustainableZoneDialogBase</receiver><slot>accept()</slot></connection>
+  <connection><sender>button_box</sender><signal>rejected()</signal><receiver>SustainableZoneDialogBase</receiver><slot>reject()</slot></connection>
+ </connections>
+</ui>
